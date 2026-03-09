@@ -1,4 +1,4 @@
-it # Streamzz
+# Streamzz
 
 Streamzz is a full-stack cinematic movie platform built with React, Redux Toolkit, Node.js, Express, MongoDB, TMDB, Three.js, and GSAP. It combines public movie discovery with a custom backend for authentication, favorites, watch history, and admin controls.
 
