@@ -28,11 +28,13 @@ const normalizeMediaItem = (item) => {
     tmdbId: item.id,
     mediaType,
     title: item.title || item.name || "Untitled",
+    originalTitle: item.original_title || item.original_name || item.title || item.name || "Untitled",
     overview: item.overview || "",
     posterPath: item.poster_path || item.profile_path || "",
     backdropPath: item.backdrop_path || "",
     releaseDate: item.release_date || item.first_air_date || "",
     voteAverage: typeof item.vote_average === "number" ? Number(item.vote_average.toFixed(1)) : null,
+    genreIds: Array.isArray(item.genre_ids) ? item.genre_ids : [],
   };
 };
 
@@ -76,14 +78,16 @@ const normalizeDetailsResponse = (item, mediaType) => {
 
   const similar = Array.isArray(item?.similar?.results)
     ? item.similar.results.slice(0, 12).map((similarItem) => ({
-        id: `${mediaType}-${similarItem.id}`,
-        tmdbId: similarItem.id,
-        mediaType,
-        title: similarItem.title || similarItem.name || "Untitled",
-        posterPath: similarItem.poster_path || "",
-        releaseDate: similarItem.release_date || similarItem.first_air_date || "",
-        voteAverage: typeof similarItem.vote_average === "number" ? Number(similarItem.vote_average.toFixed(1)) : null,
-      }))
+      id: `${mediaType}-${similarItem.id}`,
+      tmdbId: similarItem.id,
+      mediaType,
+      title: similarItem.title || similarItem.name || "Untitled",
+      originalTitle: similarItem.original_title || similarItem.original_name || similarItem.title || similarItem.name || "Untitled",
+      posterPath: similarItem.poster_path || "",
+      releaseDate: similarItem.release_date || similarItem.first_air_date || "",
+      voteAverage: typeof similarItem.vote_average === "number" ? Number(similarItem.vote_average.toFixed(1)) : null,
+      genreIds: Array.isArray(similarItem.genre_ids) ? similarItem.genre_ids : [],
+    }))
     : [];
 
   return {
@@ -91,12 +95,14 @@ const normalizeDetailsResponse = (item, mediaType) => {
     tmdbId: item.id,
     mediaType,
     title: item.title || item.name || "Untitled",
+    originalTitle: item.original_title || item.original_name || item.title || item.name || "Untitled",
     overview: item.overview || "Description not available",
     posterPath: item.poster_path || "",
     backdropPath: item.backdrop_path || "",
     releaseDate: item.release_date || item.first_air_date || "",
     voteAverage: typeof item.vote_average === "number" ? Number(item.vote_average.toFixed(1)) : null,
     genres,
+    genreIds: Array.isArray(item.genre_ids) ? item.genre_ids : [],
     runtime,
     status: item.status || "",
     originalLanguage: item.original_language || "",

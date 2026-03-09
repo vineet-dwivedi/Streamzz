@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/User");
 
+const ADMIN_EMAIL = "vineetdwi17@gmail.com";
+
 // Create JWT token for logged-in user
 const getToken = (userId) => {
   const secret = process.env.JWT_SECRET;
@@ -21,6 +23,10 @@ const safeUser = (user) => ({
   role: user.role,
   isBanned: user.isBanned,
 });
+
+const getRoleFromEmail = (email) => {
+  return email === ADMIN_EMAIL ? "admin" : "user";
+};
 
 /**
  * POST /api/auth/signup
@@ -50,9 +56,7 @@ const signup = async (req, res) => {
       name: name.trim(),
       email: normalizedEmail,
       password,
-      // Demo shortcut: every new signup becomes admin.
-      // Change this back to "user" for production.
-      role: "admin",
+      role: getRoleFromEmail(normalizedEmail),
     });
 
     const token = getToken(user._id.toString());
@@ -112,10 +116,10 @@ const login = async (req, res) => {
       });
     }
 
-    // Demo shortcut: anyone who logs in is promoted to admin.
-    // Keeps admin panel accessible without Mongo manual updates.
-    if (user.role !== "admin") {
-      user.role = "admin";
+    const expectedRole = getRoleFromEmail(normalizedEmail);
+
+    if (user.role !== expectedRole) {
+      user.role = expectedRole;
       await user.save();
     }
 

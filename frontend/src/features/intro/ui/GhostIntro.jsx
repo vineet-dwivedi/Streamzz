@@ -25,7 +25,7 @@ const fluorescentColors = {
   violet: 0x8a2be2,
 };
 
-function GhostIntro() {
+function GhostIntro({ onEnterComplete }) {
   const navigate = useNavigate();
   const rootRef = useRef(null);
   const canEnterRef = useRef(false);
@@ -48,6 +48,11 @@ function GhostIntro() {
     }
 
     exitTimerRef.current = setTimeout(() => {
+      if (typeof onEnterComplete === "function") {
+        onEnterComplete();
+        return;
+      }
+
       navigate(PATHS.AUTH, { replace: true });
     }, 760);
   };

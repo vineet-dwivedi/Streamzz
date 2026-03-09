@@ -1,0 +1,11 @@
+.page-loader {
+  min-height: 40vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--text-secondary);
+  font-family: "DM Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

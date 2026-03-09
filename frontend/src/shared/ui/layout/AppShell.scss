@@ -1,0 +1,31 @@
+.app-shell-root {
+  isolation: isolate;
+}
+
+.app-shell-window {
+  width: min(1320px, 100%);
+}
+
+.app-header {
+  will-change: background-color, box-shadow;
+}
+
+.app-nav-link-label {
+  position: relative;
+  z-index: 1;
+}
+
+.app-actions {
+  min-height: 44px;
+}
+
+.app-user-chip,
+.app-logout-btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1100px) {
+  .app-actions {
+    flex-wrap: wrap;
+  }
+}

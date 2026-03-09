@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable both-edges;
+  background: var(--bg-root);
+}
+
+body {
+  margin: 0;
+  color: var(--text-main);
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(201, 168, 76, 0.1), rgba(0, 0, 0, 0) 34%),
+    radial-gradient(circle at 92% 16%, rgba(255, 252, 240, 0.04), rgba(0, 0, 0, 0) 34%),
+    var(--gradient-hero);
+  letter-spacing: -0.005em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.17) 0.5px, transparent 0.8px);
+  background-size: 5px 5px, 7px 7px;
+}
+
+*:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, white 28%);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+html,
+body,
+.app-main,
+.stream-row,
+.movie-similar-row,
+.studio-movie-list,
+.movie-modal {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 168, 76, 0.58) rgba(255, 252, 240, 0.04);
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.app-main::-webkit-scrollbar,
+.stream-row::-webkit-scrollbar,
+.movie-similar-row::-webkit-scrollbar,
+.studio-movie-list::-webkit-scrollbar,
+.movie-modal::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+.app-main::-webkit-scrollbar-track,
+.stream-row::-webkit-scrollbar-track,
+.movie-similar-row::-webkit-scrollbar-track,
+.studio-movie-list::-webkit-scrollbar-track,
+.movie-modal::-webkit-scrollbar-track {
+  background: rgba(255, 252, 240, 0.03);
+  border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+.app-main::-webkit-scrollbar-thumb,
+.stream-row::-webkit-scrollbar-thumb,
+.movie-similar-row::-webkit-scrollbar-thumb,
+.studio-movie-list::-webkit-scrollbar-thumb,
+.movie-modal::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(253, 250, 242, 0.78), rgba(201, 168, 76, 0.78));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.glass-heavy {
+  border: 1px solid var(--glass-border);
+  background: linear-gradient(145deg, rgba(17, 16, 9, 0.84), rgba(12, 11, 9, 0.72));
+  backdrop-filter: var(--glass-blur);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 240, 0.05),
+    0 22px 52px rgba(0, 0, 0, 0.48);
+}
+
+.glass-subtle {
+  border: 1px solid var(--border-dim);
+  background: linear-gradient(145deg, rgba(255, 252, 240, 0.03), rgba(255, 252, 240, 0.015));
+  backdrop-filter: blur(16px);
+}
+

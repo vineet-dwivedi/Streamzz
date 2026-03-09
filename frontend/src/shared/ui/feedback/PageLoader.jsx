@@ -1,3 +1,5 @@
+import "./PageLoader.scss";
+
 function PageLoader() {
   return (
     <div className="page-loader" role="status" aria-live="polite">

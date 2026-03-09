@@ -1,0 +1,84 @@
+@keyframes shell-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.24);
+    opacity: 0.48;
+  }
+}
+
+@keyframes preview-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stat-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes skeleton-move {
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes glitch-hover {
+  0% {
+    clip-path: inset(0 0 98% 0);
+    transform: skewX(0deg);
+  }
+  10% {
+    clip-path: inset(30% 0 50% 0);
+    transform: skewX(-4deg);
+    color: var(--danger);
+  }
+  30% {
+    clip-path: inset(60% 0 20% 0);
+    transform: skewX(2deg);
+    color: var(--gold);
+  }
+  60% {
+    clip-path: inset(10% 0 80% 0);
+    transform: skewX(-2deg);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: skewX(0deg);
+  }
+}
+

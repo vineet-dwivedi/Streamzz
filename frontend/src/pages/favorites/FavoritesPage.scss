@@ -1,0 +1,23 @@
+.stream-page-browse {
+  isolation: isolate;
+}
+
+.stream-page-browse .stream-hero {
+  contain: layout paint;
+}
+
+.stream-page-browse .browse-search {
+  align-self: start;
+}
+
+.stream-page-browse .stream-grid {
+  align-items: start;
+}
+
+.stream-page-browse .movie-modal {
+  scrollbar-gutter: stable;
+}
+
+.stream-page-browse .stream-load-more-btn {
+  justify-self: center;
+}

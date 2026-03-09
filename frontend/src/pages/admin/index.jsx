@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createAdminMovie,
@@ -16,6 +16,8 @@ import {
   toggleAdminUserBan,
   updateAdminMovie,
 } from "@/features/admin/model/adminSlice";
+import { useEditorialMotion } from "@/shared/lib/animation/useEditorialMotion";
+import "./AdminDashboardPage.scss";
 
 const movieFormInitial = {
   movieId: "",
@@ -35,6 +37,7 @@ const toSafeDateInput = (value) => {
 
 function AdminDashboardPage() {
   const dispatch = useDispatch();
+  const rootRef = useRef(null);
 
   const movies = useSelector(selectAdminMovies);
   const users = useSelector(selectAdminUsers);
@@ -53,6 +56,8 @@ function AdminDashboardPage() {
   const isSubmittingMovie = isCreatingMovie || isUpdatingMovie;
 
   const bannedUserCount = useMemo(() => users.filter((user) => user.isBanned).length, [users]);
+
+  useEditorialMotion(rootRef, [movies.length, users.length]);
 
   useEffect(() => {
     if (moviesStatus === "idle") {
@@ -146,7 +151,7 @@ function AdminDashboardPage() {
   };
 
   return (
-    <section className="stream-page">
+    <section ref={rootRef} className="stream-page">
       <header className="stream-hero stream-hero-admin glass-heavy">
         <div className="stream-hero-overlay" />
         <div className="stream-hero-content">
@@ -169,7 +174,7 @@ function AdminDashboardPage() {
         </div>
       </header>
 
-      <section className="stream-dashboard-grid">
+      <section className="stream-section stream-dashboard-grid">
         <article className="stream-stat glass-subtle">
           <span>Catalog Size</span>
           <strong>{movies.length}</strong>
@@ -191,7 +196,7 @@ function AdminDashboardPage() {
 
       {adminError ? <p className="stream-error">{adminError}</p> : null}
 
-      <section className="studio-panel glass-heavy">
+      <section className="stream-section studio-panel glass-heavy">
         <div className="studio-panel-head">
           <h3>{activeTab === "catalog" ? "Studio Catalog Panel" : "User Moderation Panel"}</h3>
           <div className="studio-tab-switch glass-subtle">
@@ -318,7 +323,7 @@ function AdminDashboardPage() {
                         </button>
                         <button
                           type="button"
-                          className="stream-mini-btn"
+                          className="stream-mini-btn is-danger"
                           disabled={actionLoading}
                           onClick={() => handleDeleteMovie(movie._id, movie.title)}
                         >
@@ -354,7 +359,7 @@ function AdminDashboardPage() {
                     <button type="button" className="stream-mini-btn" disabled={actionLoading} onClick={() => handleToggleBan(user)}>
                       {actionLoading ? "Please wait..." : user.isBanned ? "Unban" : "Ban"}
                     </button>
-                    <button type="button" className="stream-mini-btn" disabled={actionLoading} onClick={() => handleDeleteUser(user)}>
+                    <button type="button" className="stream-mini-btn is-danger" disabled={actionLoading} onClick={() => handleDeleteUser(user)}>
                       Delete
                     </button>
                   </div>
@@ -369,4 +374,3 @@ function AdminDashboardPage() {
 }
 
 export default AdminDashboardPage;
-

@@ -1,0 +1,301 @@
+.stream-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stream-stat {
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 6px;
+  animation: stat-float 6.5s ease-in-out infinite;
+}
+
+.stream-stat:nth-child(2) {
+  animation-delay: -1.2s;
+}
+
+.stream-stat:nth-child(3) {
+  animation-delay: -2.4s;
+}
+
+.stream-stat span {
+  font-family: "DM Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.stream-stat strong {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  color: var(--text-bright);
+}
+
+.stream-stat small {
+  color: var(--text-secondary);
+}
+
+.stream-actions {
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.stream-actions h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.studio-panel {
+  border-radius: 18px;
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.studio-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.studio-panel-head h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: var(--text-bright);
+}
+
+.studio-tab-switch {
+  padding: 5px;
+  border-radius: 12px;
+  display: inline-flex;
+  gap: 5px;
+}
+
+.studio-tab-switch button {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.studio-tab-switch button:hover {
+  border-color: var(--border-soft);
+  color: var(--text-bright);
+}
+
+.studio-tab-switch button.is-active {
+  color: var(--black);
+  border-color: rgba(253, 250, 242, 0.14);
+  background: linear-gradient(120deg, var(--white), #e9dfc5);
+}
+
+.studio-catalog-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.studio-form {
+  border-radius: 14px;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  align-self: start;
+}
+
+.studio-form h4 {
+  margin: 0;
+  font-family: "DM Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.studio-field {
+  display: grid;
+  gap: 5px;
+}
+
+.studio-field span {
+  font-family: "DM Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.studio-field input,
+.studio-field select,
+.studio-field textarea {
+  width: 100%;
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  background: rgba(24, 22, 16, 0.88);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  outline: none;
+  font-family: "Outfit", sans-serif;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.studio-field textarea {
+  resize: vertical;
+  min-height: 86px;
+}
+
+.studio-field input:focus,
+.studio-field select:focus,
+.studio-field textarea:focus {
+  border-color: rgba(201, 168, 76, 0.54);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.14);
+}
+
+.studio-field-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.studio-form-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.studio-movie-list {
+  display: grid;
+  gap: 10px;
+  max-height: 760px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.studio-movie-card {
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 118px 1fr;
+}
+
+.studio-movie-poster {
+  min-height: 156px;
+  background: rgba(255, 252, 240, 0.04);
+}
+
+.studio-movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.studio-poster-empty {
+  width: 100%;
+  height: 100%;
+  min-height: 156px;
+  display: grid;
+  place-items: center;
+  text-transform: uppercase;
+  font-size: 0.67rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.studio-movie-body {
+  padding: 10px;
+  display: grid;
+  gap: 5px;
+}
+
+.studio-movie-body strong {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-bright);
+}
+
+.studio-movie-body p,
+.studio-movie-body small {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.studio-genre-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.studio-chip {
+  border-radius: 999px;
+  border: 1px solid var(--border-dim);
+  padding: 4px 7px;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(255, 252, 240, 0.04);
+}
+
+.studio-user-list {
+  display: grid;
+  gap: 10px;
+}
+
+.studio-user-card {
+  border-radius: 12px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.studio-user-info {
+  display: grid;
+  gap: 4px;
+}
+
+.studio-user-info strong {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.18rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-bright);
+}
+
+.studio-user-info p,
+.studio-user-info small {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.studio-user-actions {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+

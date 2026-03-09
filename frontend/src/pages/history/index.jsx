@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHistoryItems, removeHistoryItem, selectHistory, selectHistoryActionStatus } from "@/features/history/model/historySlice";
+import { useEditorialMotion } from "@/shared/lib/animation/useEditorialMotion";
+import "./HistoryPage.scss";
 
 const imageBaseUrl = import.meta.env.VITE_TMDB_IMAGE_BASE_URL || "https://image.tmdb.org/t/p/w500";
 
@@ -25,8 +27,11 @@ const formatTime = (value) => {
 
 function HistoryPage() {
   const dispatch = useDispatch();
+  const rootRef = useRef(null);
   const { items, status, error } = useSelector(selectHistory);
   const actionStatus = useSelector(selectHistoryActionStatus);
+
+  useEditorialMotion(rootRef, [items.length]);
 
   useEffect(() => {
     if (status === "idle") {
@@ -35,7 +40,7 @@ function HistoryPage() {
   }, [dispatch, status]);
 
   return (
-    <section className="stream-page">
+    <section ref={rootRef} className="stream-page">
       <header className="stream-hero stream-hero-history glass-heavy">
         <div className="stream-hero-overlay" />
         <div className="stream-hero-content">
@@ -52,7 +57,7 @@ function HistoryPage() {
         </div>
       </header>
 
-      <section className="stream-rail">
+      <section className="stream-section stream-rail">
         <div className="stream-rail-head">
           <h3>History Timeline</h3>
           <span>{items.length} entries</span>
@@ -62,7 +67,7 @@ function HistoryPage() {
 
         <div className="stream-grid">
           {items.map((item) => (
-            <article key={item.contentKey} className={`stream-card stream-card-grid glass-subtle tone-${getTone(item)}`}>
+            <article key={item.contentKey} className={`stream-card movie-card stream-card-grid history-entry glass-subtle tone-${getTone(item)}`}>
               <div className="stream-poster">
                 {item.posterPath ? (
                   <img className="stream-poster-img" src={getPosterUrl(item.posterPath)} alt={item.title} loading="lazy" />
@@ -78,7 +83,7 @@ function HistoryPage() {
                 <div className="stream-card-actions">
                   <button
                     type="button"
-                    className="stream-mini-btn"
+                    className="stream-mini-btn is-danger"
                     onClick={() => dispatch(removeHistoryItem(item.contentKey))}
                     disabled={actionStatus[item.contentKey] === "loading"}
                   >
@@ -98,4 +103,3 @@ function HistoryPage() {
 }
 
 export default HistoryPage;
-

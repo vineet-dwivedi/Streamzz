@@ -1,0 +1,74 @@
+:root {
+  --bg-root: #0c0b09;
+  --bg-surface: #111009;
+  --bg-elevated: #181610;
+  --bg-hover: #1f1d16;
+
+  --border-dim: rgba(255, 252, 240, 0.06);
+  --border-soft: rgba(255, 252, 240, 0.12);
+  --border-mid: rgba(255, 252, 240, 0.2);
+
+  --text-bright: #fdfaf2;
+  --text-primary: #e8e3d4;
+  --text-secondary: #8c8778;
+  --text-ghost: #3d3b33;
+
+  --gold: #c9a84c;
+  --gold-dim: rgba(201, 168, 76, 0.12);
+  --gold-ghost: rgba(201, 168, 76, 0.05);
+  --danger: #8f5b56;
+  --danger-dim: rgba(143, 91, 86, 0.12);
+
+  --white: #fdfaf2;
+  --black: #0c0b09;
+  --accent: var(--gold);
+  --accent-glow: rgba(201, 168, 76, 0.16);
+  --accent-dim: rgba(201, 168, 76, 0.08);
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 128px;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-cinematic: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --dur-fast: 180ms;
+  --dur-mid: 380ms;
+  --dur-slow: 680ms;
+  --dur-cinematic: 1100ms;
+
+  --gradient-hero: radial-gradient(circle at 20% 18%, rgba(201, 168, 76, 0.08), transparent 38%),
+    linear-gradient(180deg, #111009 0%, #0c0b09 60%, #0a0907 100%);
+  --gradient-card: linear-gradient(160deg, #181610 0%, #111009 100%);
+  --gradient-shine: linear-gradient(105deg, transparent 35%, rgba(255, 252, 240, 0.06) 50%, transparent 65%);
+  --gradient-spectrum: linear-gradient(90deg, rgba(253, 250, 242, 0.95), rgba(201, 168, 76, 0.9));
+
+  --glass-bg: rgba(17, 16, 9, 0.72);
+  --glass-border: rgba(255, 252, 240, 0.08);
+  --glass-blur: blur(20px) saturate(130%);
+
+  --bg-1: var(--bg-root);
+  --bg-2: var(--bg-surface);
+  --text-main: var(--text-primary);
+  --text-soft: var(--text-secondary);
+  --line-soft: var(--border-dim);
+  --glass-1: rgba(255, 252, 240, 0.05);
+  --glass-2: rgba(255, 252, 240, 0.02);
+  --glass-3: rgba(255, 252, 240, 0.12);
+  --warm-1: #f4ecdd;
+  --warm-2: #d7be83;
+  --warm-3: #c9a84c;
+  --cool-1: #d4ccb6;
+  --cool-2: #8c8778;
+}
+
