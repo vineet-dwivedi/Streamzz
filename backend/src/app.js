@@ -6,10 +6,30 @@ const { errorMiddleware } = require("./middleware/error.middleware");
 
 const app = express();
 
-const allowedOrigin = process.env.CLIENT_URL || "http://localhost:5173";
+const envOrigins = [process.env.CLIENT_URL, process.env.CLIENT_URLS]
+  .filter(Boolean)
+  .flatMap((value) => value.split(","))
+  .map((value) => value.trim())
+  .filter(Boolean);
+
+const allowedOrigins = Array.from(new Set(["http://localhost:5173", ...envOrigins]));
+const vercelPreviewPattern = /^https:\/\/.*\.vercel\.app$/;
+
 app.use(
   cors({
-    origin: allowedOrigin,
+    origin(origin, callback) {
+      if (!origin) {
+        callback(null, true);
+        return;
+      }
+
+      if (allowedOrigins.includes(origin) || vercelPreviewPattern.test(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("CORS origin not allowed"));
+    },
     credentials: true,
   })
 );
