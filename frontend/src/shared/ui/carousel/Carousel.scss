@@ -236,3 +236,43 @@
 .carousel-indicator.inactive {
   background-color: rgba(255, 255, 255, 0.26);
 }
+
+:root[data-theme="light"] .carousel-container {
+  background: var(--gradient-card);
+  box-shadow: 0 14px 32px rgba(15, 23, 34, 0.12);
+}
+
+:root[data-theme="light"] .carousel-item {
+  box-shadow: 0 12px 24px rgba(15, 23, 34, 0.12);
+}
+
+:root[data-theme="light"] .carousel-item.is-clickable:focus-visible {
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 12px 24px rgba(15, 23, 34, 0.12);
+}
+
+:root[data-theme="light"] .carousel-icon-container {
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+:root[data-theme="light"] .carousel-movie-media::after {
+  background: linear-gradient(to top, rgba(15, 23, 34, 0.6), rgba(15, 23, 34, 0.08) 55%);
+}
+
+:root[data-theme="light"] .carousel-movie-badge,
+:root[data-theme="light"] .carousel-movie-rating {
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text-primary);
+  border-color: var(--border-soft);
+}
+
+:root[data-theme="light"] .carousel-indicator.active {
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-dim);
+}
+
+:root[data-theme="light"] .carousel-indicator.inactive {
+  background-color: color-mix(in srgb, var(--text-primary) 18%, transparent);
+}

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import LightRays from "@/shared/ui/light-rays/LightRays";
@@ -12,6 +12,10 @@ const floatTransition = {
 
 function LightIntro({ onEnter, onAuth }) {
   const rootRef = useRef(null);
+  const [theme, setTheme] = useState(() => {
+    if (typeof document === "undefined") return "dark";
+    return document.documentElement.dataset.theme || "dark";
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -36,12 +40,22 @@ function LightIntro({ onEnter, onAuth }) {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined;
+    const root = document.documentElement;
+    const updateTheme = () => setTheme(root.dataset.theme || "dark");
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section ref={rootRef} className="light-intro">
       <div className="light-intro__rays" aria-hidden="true">
         <LightRays
           raysOrigin="top-center"
-          raysColor="#f1efe8"
+          raysColor={theme === "light" ? "#1a2330" : "#f1efe8"}
           raysSpeed={0.9}
           lightSpread={1.4}
           rayLength={1.5}

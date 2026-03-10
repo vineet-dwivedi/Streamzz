@@ -532,3 +532,94 @@
     linear-gradient(110deg, rgba(20, 26, 34, 0.92), rgba(12, 16, 22, 0.96));
 }
 
+:root[data-theme="light"] .stream-card {
+  box-shadow: 0 12px 28px rgba(15, 23, 34, 0.12);
+}
+
+:root[data-theme="light"] .stream-card:hover {
+  box-shadow: 0 20px 44px rgba(15, 23, 34, 0.18), 0 0 18px var(--accent-dim);
+}
+
+:root[data-theme="light"] .stream-poster {
+  background:
+    linear-gradient(140deg, rgba(15, 23, 34, 0.04), rgba(15, 23, 34, 0)),
+    linear-gradient(110deg, rgba(255, 255, 255, 0.94), rgba(238, 242, 247, 0.96));
+}
+
+:root[data-theme="light"] .stream-poster-shadow {
+  background: linear-gradient(to top, rgba(15, 23, 34, 0.55), rgba(15, 23, 34, 0));
+}
+
+:root[data-theme="light"] .stream-poster::after {
+  background: linear-gradient(90deg, rgba(15, 23, 34, 0), rgba(15, 23, 34, 0.12), rgba(15, 23, 34, 0));
+}
+
+:root[data-theme="light"] .stream-poster-fallback {
+  color: color-mix(in srgb, var(--text-secondary) 80%, transparent);
+}
+
+:root[data-theme="light"] .stream-hover-loading,
+:root[data-theme="light"] .stream-hover-hint {
+  background: rgba(15, 23, 34, 0.78);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+:root[data-theme="light"] .stream-hover-audio-btn {
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text-primary);
+}
+
+:root[data-theme="light"] .stream-hover-audio-btn:hover {
+  background: #ffffff;
+}
+
+:root[data-theme="light"] .genre-chip {
+  background: var(--bg-elevated);
+}
+
+:root[data-theme="light"] .stream-type-chip {
+  background: color-mix(in srgb, var(--bg-root) 76%, var(--text-bright) 24%);
+}
+
+:root[data-theme="light"] .movie-card .card-overlay {
+  background: linear-gradient(to top, rgba(15, 23, 34, 0.6) 0%, rgba(15, 23, 34, 0.12) 44%, transparent 70%);
+}
+
+:root[data-theme="light"] .top-ten-row::before {
+  background: linear-gradient(90deg, rgba(15, 23, 34, 0.05), transparent 35%);
+}
+
+:root[data-theme="light"] .spotlight-backdrop {
+  filter: blur(80px) brightness(0.8);
+  opacity: 0.55;
+}
+
+:root[data-theme="light"] .skeleton-line {
+  background: rgba(15, 23, 34, 0.08);
+}
+
+:root[data-theme="light"] .skeleton-shimmer::after {
+  background: linear-gradient(100deg, transparent, rgba(15, 23, 34, 0.12), transparent);
+}
+
+:root[data-theme="light"] .stream-progress {
+  background: rgba(15, 23, 34, 0.14);
+}
+
+:root[data-theme="light"] .rating-badge[data-score="high"] {
+  color: var(--text-primary);
+  border-color: var(--border-soft);
+  background: rgba(15, 23, 34, 0.06);
+}
+
+:root[data-theme="light"] .rating-badge[data-score="medium"] {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: var(--accent-dim);
+}
+
+:root[data-theme="light"] .rating-badge[data-score="low"] {
+  color: var(--text-secondary);
+  background: rgba(15, 23, 34, 0.04);
+}
+

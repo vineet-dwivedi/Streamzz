@@ -257,3 +257,38 @@
   letter-spacing: 0.12em;
 }
 
+:root[data-theme="light"] .hero-backdrop img {
+  filter: grayscale(15%) brightness(0.8) contrast(1.05);
+}
+
+:root[data-theme="light"] .stream-hero-overlay {
+  background:
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 18%, rgba(15, 23, 34, 0.32) 100%),
+    linear-gradient(to top, rgba(15, 23, 34, 0.5), rgba(15, 23, 34, 0.08));
+}
+
+:root[data-theme="light"] .hero-cinematic .stream-hero-overlay {
+  background:
+    linear-gradient(to top, var(--bg-root) 0%, transparent 52%),
+    linear-gradient(to right, var(--bg-root) 0%, transparent 44%),
+    linear-gradient(to bottom, rgba(15, 23, 34, 0.25) 0%, transparent 34%);
+}
+
+:root[data-theme="light"] .stream-hero-favorites::before {
+  background:
+    radial-gradient(circle at 82% 22%, rgba(41, 92, 255, 0.1), rgba(0, 0, 0, 0) 42%),
+    linear-gradient(120deg, rgba(15, 23, 34, 0.04), rgba(0, 0, 0, 0) 54%);
+}
+
+:root[data-theme="light"] .stream-hero-history::before {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(41, 92, 255, 0.08), rgba(0, 0, 0, 0) 38%),
+    linear-gradient(130deg, rgba(15, 23, 34, 0.04), rgba(0, 0, 0, 0) 56%);
+}
+
+:root[data-theme="light"] .stream-hero-admin::before {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(41, 92, 255, 0.1), rgba(0, 0, 0, 0) 40%),
+    linear-gradient(130deg, rgba(15, 23, 34, 0.04), rgba(0, 0, 0, 0) 58%);
+}
+

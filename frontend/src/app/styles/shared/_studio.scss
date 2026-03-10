@@ -296,3 +296,7 @@
   justify-content: flex-end;
 }
 
+:root[data-theme="light"] .studio-movie-poster {
+  background: var(--bg-surface);
+}
+

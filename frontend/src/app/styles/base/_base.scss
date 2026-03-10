@@ -70,7 +70,7 @@ body,
 .studio-movie-list,
 .movie-modal {
   scrollbar-width: thin;
-  scrollbar-color: rgba(111, 183, 255, 0.6) rgba(255, 255, 255, 0.04);
+  scrollbar-color: color-mix(in srgb, var(--accent) 68%, var(--text-primary) 32%) color-mix(in srgb, var(--text-primary) 8%, transparent);
 }
 
 html::-webkit-scrollbar,
@@ -91,7 +91,7 @@ body::-webkit-scrollbar-track,
 .movie-similar-row::-webkit-scrollbar-track,
 .studio-movie-list::-webkit-scrollbar-track,
 .movie-modal::-webkit-scrollbar-track {
-  background: rgba(255, 252, 240, 0.03);
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
   border-radius: 999px;
 }
 
@@ -102,7 +102,7 @@ body::-webkit-scrollbar-thumb,
 .movie-similar-row::-webkit-scrollbar-thumb,
 .studio-movie-list::-webkit-scrollbar-thumb,
 .movie-modal::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(246, 247, 251, 0.78), rgba(111, 183, 255, 0.78));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 55%, var(--text-bright) 45%), var(--accent));
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;

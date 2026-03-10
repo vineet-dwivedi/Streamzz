@@ -293,3 +293,25 @@
   color: var(--text-soft);
 }
 
+:root[data-theme="light"] .movie-modal-backdrop {
+  background:
+    radial-gradient(circle at center, rgba(41, 92, 255, 0.08), rgba(0, 0, 0, 0) 45%),
+    rgba(245, 247, 251, 0.92);
+}
+
+:root[data-theme="light"] .movie-modal {
+  box-shadow: 0 24px 60px rgba(15, 23, 34, 0.18);
+}
+
+:root[data-theme="light"] .movie-trailer-fullscreen-backdrop {
+  background: rgba(15, 23, 34, 0.86);
+}
+
+:root[data-theme="light"] .movie-similar-poster {
+  background: var(--bg-surface);
+}
+
+:root[data-theme="light"] .stream-sentinel {
+  background: rgba(15, 23, 34, 0.04);
+}
+

@@ -192,7 +192,7 @@
 }
 
 .stream-row::-webkit-scrollbar-track {
-  background: rgba(255, 252, 240, 0.05);
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
   border-radius: 999px;
 }
 
@@ -245,5 +245,9 @@
   background: var(--accent);
   border-color: var(--accent);
   color: var(--black);
+}
+
+:root[data-theme="light"] .stream-btn-primary {
+  box-shadow: 0 10px 24px rgba(41, 92, 255, 0.18);
 }
 

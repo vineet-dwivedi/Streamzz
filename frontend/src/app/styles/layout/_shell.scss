@@ -439,6 +439,23 @@
   }
 }
 
+:root[data-theme="light"] .app-noise-layer {
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(15, 23, 34, 0.08), rgba(15, 23, 34, 0.08) 1px, transparent 1px, transparent 6px),
+    repeating-linear-gradient(90deg, rgba(15, 23, 34, 0.06), rgba(15, 23, 34, 0.06) 1px, transparent 1px, transparent 6px);
+}
+
+:root[data-theme="light"] .app-shell-glow-left {
+  background: color-mix(in srgb, var(--accent) 32%, white 68%);
+  opacity: 0.22;
+}
+
+:root[data-theme="light"] .app-shell-glow-right {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  opacity: 0.16;
+}
+
 .app-mobile-link {
   border: 1px solid transparent;
   border-radius: 12px;
