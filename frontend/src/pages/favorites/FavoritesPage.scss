@@ -21,3 +21,57 @@
 .stream-page-browse .stream-load-more-btn {
   justify-self: center;
 }
+
+.feature-carousel {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-carousel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 18% 20%, rgba(111, 183, 255, 0.12), transparent 55%);
+  pointer-events: none;
+}
+
+.feature-carousel-text {
+  display: grid;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-carousel-copy {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.feature-carousel-widget {
+  justify-self: end;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 820px) {
+  .feature-carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-carousel-widget {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .feature-carousel-widget {
+    justify-self: center;
+  }
+}

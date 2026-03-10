@@ -62,10 +62,16 @@ function AppShell({ children }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const headerRef = useRef(null);
+  const swingTimerRef = useRef(null);
   const { token } = useSelector(selectAuth);
   const user = useSelector(selectUser);
   const navItems = user?.role === ROLES.ADMIN ? [...baseNavItems, { label: "Studio", path: PATHS.ADMIN, icon: "studio" }] : baseNavItems;
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark";
+    return window.localStorage.getItem("streamzz-theme") || "dark";
+  });
+  const [isSwinging, setIsSwinging] = useState(false);
 
   useEffect(() => {
     const updateScrollProgress = () => {
@@ -89,15 +95,46 @@ function AppShell({ children }) {
     }
 
     const updateHeaderTone = () => {
-      const hasScrolled = window.scrollY > 100;
+      const hasScrolled = window.scrollY > 24;
       header.dataset.scrolled = hasScrolled ? "true" : "false";
     };
 
+    let lastY = window.scrollY;
+    let lastDirection = "up";
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastY;
+      const direction = delta > 6 ? "down" : delta < -6 ? "up" : lastDirection;
+
+      if (direction !== lastDirection) {
+        header.dataset.direction = direction;
+        lastDirection = direction;
+      }
+
+      updateHeaderTone();
+      lastY = currentY;
+    };
+
+    header.dataset.direction = "up";
     updateHeaderTone();
-    window.addEventListener("scroll", updateHeaderTone, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", updateHeaderTone);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("streamzz-theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    return () => {
+      if (swingTimerRef.current) {
+        clearTimeout(swingTimerRef.current);
+      }
     };
   }, []);
 
@@ -114,6 +151,15 @@ function AppShell({ children }) {
     }
   };
 
+  const handleThemeToggle = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    setIsSwinging(true);
+    if (swingTimerRef.current) {
+      clearTimeout(swingTimerRef.current);
+    }
+    swingTimerRef.current = setTimeout(() => setIsSwinging(false), 700);
+  };
+
   return (
     <div className="app-shell-root">
       <div className="app-scroll-progress" aria-hidden="true">
@@ -128,9 +174,9 @@ function AppShell({ children }) {
         <header ref={headerRef} className="app-header">
           <button type="button" className="app-brand" onClick={() => navigate(PATHS.FAVORITES)}>
             <h1 className="app-title">
-              <span>OBSIDIAN.</span>
+              <span>STREAMZZ</span>
             </h1>
-            <p className="app-subtitle">Editorial Motion Picture Index</p>
+            <p className="app-subtitle">Cinematic Archive</p>
           </button>
 
           <nav className="app-nav" aria-label="Primary Navigation">
@@ -158,6 +204,16 @@ function AppShell({ children }) {
 
         <main className="app-main">{children}</main>
       </div>
+
+      <button
+        type="button"
+        className={`theme-toggle ${isSwinging ? "is-swinging" : ""}`}
+        onClick={handleThemeToggle}
+        aria-label="Toggle theme"
+        aria-pressed={theme === "light"}
+      >
+        <span className="theme-toggle-label">{theme === "dark" ? "Dark" : "Light"}</span>
+      </button>
 
       <nav className="app-mobile-tab" aria-label="Mobile Navigation" style={{ "--mobile-tab-count": navItems.length }}>
         {navItems.map((item) => (

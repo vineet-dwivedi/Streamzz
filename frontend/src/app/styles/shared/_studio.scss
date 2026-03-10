@@ -9,31 +9,22 @@
   padding: 16px;
   display: grid;
   gap: 6px;
-  animation: stat-float 6.5s ease-in-out infinite;
-}
-
-.stream-stat:nth-child(2) {
-  animation-delay: -1.2s;
-}
-
-.stream-stat:nth-child(3) {
-  animation-delay: -2.4s;
 }
 
 .stream-stat span {
-  font-family: "DM Mono", monospace;
-  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   color: var(--text-secondary);
 }
 
 .stream-stat strong {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-style: italic;
-  font-weight: 300;
-  letter-spacing: -0.04em;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text-bright);
 }
 
@@ -58,6 +49,8 @@
   padding: 16px;
   display: grid;
   gap: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
 }
 
 .studio-panel-head {
@@ -69,11 +62,11 @@
 
 .studio-panel-head h3 {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2rem);
-  font-style: italic;
-  font-weight: 300;
-  letter-spacing: -0.03em;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text-bright);
 }
 
@@ -82,6 +75,8 @@
   border-radius: 12px;
   display: inline-flex;
   gap: 5px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
 }
 
 .studio-tab-switch button {
@@ -91,9 +86,9 @@
   border-radius: 8px;
   padding: 7px 12px;
   cursor: pointer;
-  font-family: "Outfit", sans-serif;
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
 }
@@ -105,8 +100,8 @@
 
 .studio-tab-switch button.is-active {
   color: var(--black);
-  border-color: rgba(253, 250, 242, 0.14);
-  background: linear-gradient(120deg, var(--white), #e9dfc5);
+  border-color: var(--accent);
+  background: var(--accent);
 }
 
 .studio-catalog-grid {
@@ -121,13 +116,15 @@
   display: grid;
   gap: 10px;
   align-self: start;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
 }
 
 .studio-form h4 {
   margin: 0;
-  font-family: "DM Mono", monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-secondary);
 }
@@ -138,9 +135,9 @@
 }
 
 .studio-field span {
-  font-family: "DM Mono", monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-secondary);
 }
@@ -151,11 +148,11 @@
   width: 100%;
   border: 1px solid var(--border-dim);
   border-radius: 12px;
-  background: rgba(24, 22, 16, 0.88);
+  background: var(--bg-surface);
   color: var(--text-primary);
   padding: 10px 12px;
   outline: none;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-body);
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -167,8 +164,8 @@
 .studio-field input:focus,
 .studio-field select:focus,
 .studio-field textarea:focus {
-  border-color: rgba(201, 168, 76, 0.54);
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.14);
+  border-color: rgba(111, 183, 255, 0.54);
+  box-shadow: 0 0 0 3px rgba(111, 183, 255, 0.14);
 }
 
 .studio-field-row {
@@ -229,10 +226,10 @@
 }
 
 .studio-movie-body strong {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 300;
-  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-style: normal;
   color: var(--text-bright);
 }
 
@@ -252,11 +249,11 @@
   border-radius: 999px;
   border: 1px solid var(--border-dim);
   padding: 4px 7px;
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-primary);
-  background: rgba(255, 252, 240, 0.04);
+  background: var(--bg-surface);
 }
 
 .studio-user-list {
@@ -279,10 +276,10 @@
 }
 
 .studio-user-info strong {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-display);
   font-size: 1.18rem;
-  font-weight: 300;
-  font-style: italic;
+  font-weight: 600;
+  font-style: normal;
   color: var(--text-bright);
 }
 

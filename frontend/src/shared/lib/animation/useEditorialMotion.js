@@ -14,13 +14,14 @@ export const useEditorialMotion = (rootRef, deps = [], options = {}) => {
 
     const ctx = gsap.context(() => {
       if (hero) {
-        const heroTimeline = gsap.timeline({ defaults: { ease: "expo.out" } });
+        const heroTimeline = gsap.timeline({ defaults: { ease: "power4.out" } });
         const heroChars = gsap.utils.toArray(".hero-title .char", root);
 
         heroTimeline
           .from(".hero-backdrop img", {
-            scale: 1.08,
-            duration: 2.2,
+            scale: 1.15,
+            filter: "blur(20px)",
+            duration: 2.8,
             ease: "power2.out",
           })
           .from(
@@ -138,15 +139,16 @@ export const useEditorialMotion = (rootRef, deps = [], options = {}) => {
           onEnter: (batch) =>
             gsap.fromTo(
               batch,
-              { opacity: 0, y: 50, scale: 0.97 },
+              { opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" },
               {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 0.9,
-                ease: "expo.out",
-                stagger: 0.08,
-                clearProps: "transform,opacity",
+                filter: "blur(0px)",
+                duration: 1.2,
+                ease: "power3.out",
+                stagger: 0.1,
+                clearProps: "transform,opacity,filter",
               }
             ),
         });

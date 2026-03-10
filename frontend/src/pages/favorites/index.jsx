@@ -6,6 +6,7 @@ import { addHistoryItem } from "@/features/history/model/historySlice";
 import { tmdbApi } from "@/features/movies/api/tmdbApi";
 import { clearSearch, fetchPopular, fetchTrending, searchTitles, selectMovies } from "@/features/movies/model/moviesSlice";
 import { useEditorialMotion } from "@/shared/lib/animation/useEditorialMotion";
+import Carousel from "@/shared/ui/carousel/Carousel";
 import "./FavoritesPage.scss";
 
 const imageBaseUrl = import.meta.env.VITE_TMDB_IMAGE_BASE_URL || "https://image.tmdb.org/t/p/w500";
@@ -35,6 +36,26 @@ const genreFilters = [
   { id: "animation", label: "Animation", ids: [16, 10751] },
   { id: "romance", label: "Romance", ids: [10749] },
 ];
+
+const createSeededRng = (seedValue) => {
+  let seed = Math.floor(seedValue) % 2147483647;
+  if (seed <= 0) seed += 2147483646;
+  return () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+};
+
+const shuffleWithSeed = (items, seed) => {
+  const rng = createSeededRng(seed);
+  const result = [...items];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(rng() * (index + 1));
+    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+  }
+  return result;
+};
+
 
 const getPosterUrl = (path) => {
   if (!path) return "";
@@ -153,6 +174,7 @@ function FavoritesPage() {
   const [hoverTrailerMap, setHoverTrailerMap] = useState({});
   const [hoverMuteMap, setHoverMuteMap] = useState({});
   const [activeGenre, setActiveGenre] = useState("all");
+  const [carouselSeed] = useState(() => Date.now());
   const rootRef = useRef(null);
   const modalRef = useRef(null);
   const hoverTimerRef = useRef(null);
@@ -185,6 +207,11 @@ function FavoritesPage() {
   }, [activeGenre, primaryFeed.items]);
 
   const topTenItems = useMemo(() => trending.items.slice(0, 10), [trending.items]);
+  const carouselMovieItems = useMemo(() => {
+    const source = trending.items.length > 0 ? trending.items : popular.items;
+    if (source.length === 0) return [];
+    return shuffleWithSeed(source, carouselSeed).slice(0, 6);
+  }, [trending.items, popular.items, carouselSeed]);
 
   useEditorialMotion(rootRef, [featuredItem?.id, filteredPrimaryItems.length, topTenItems.length, favoriteItems.length], {
     hero: Boolean(featuredItem),
@@ -551,6 +578,30 @@ function FavoritesPage() {
     );
   };
 
+  const renderCarouselMovie = (item) => {
+    const mediaLabel = item.mediaType ? item.mediaType.toUpperCase() : "MOVIE";
+    const metaLine = `${getYear(item.releaseDate)} - ${getPrimaryGenre(item)} - ${mediaLabel}`;
+
+    return (
+      <>
+        <div className="carousel-movie-media">
+          {item.posterPath ? (
+            <img className="stream-poster-img" src={getPosterUrl(item.posterPath)} alt={item.title} loading="lazy" />
+          ) : (
+            <div className="stream-poster-fallback">No Poster</div>
+          )}
+          <span className="carousel-movie-badge">{mediaLabel}</span>
+          {item.voteAverage ? <span className="carousel-movie-rating">{item.voteAverage.toFixed(1)}</span> : null}
+        </div>
+        <div className="carousel-movie-body">
+          <strong className="carousel-movie-title">{item.title}</strong>
+          <span className="carousel-movie-meta">{metaLine}</span>
+          <span className="carousel-movie-cta">Tap to open</span>
+        </div>
+      </>
+    );
+  };
+
   const handleLoadMore = () => {
     if (!canLoadMore || primaryFeed.status === "loading") {
       return;
@@ -890,6 +941,33 @@ function FavoritesPage() {
           <strong>{primaryFeed.totalPages || 1}</strong>
           <small>TMDB feed depth</small>
         </article>
+      </section>
+
+      <section className="stream-section feature-carousel glass-subtle">
+        <div className="feature-carousel-text">
+          {renderSectionHead("Featured Carousel", "Tap a Title to Open")}
+          <p className="feature-carousel-copy">
+            Pick a title from the live feed and open the full preview without leaving this page.
+          </p>
+        </div>
+        <div className="feature-carousel-widget">
+          {carouselMovieItems.length > 0 ? (
+            <Carousel
+              items={carouselMovieItems}
+              baseWidth={320}
+              autoplay
+              autoplayDelay={3200}
+              pauseOnHover
+              loop
+              renderItem={renderCarouselMovie}
+              onItemClick={(item) => handleOpenPreview(item, "details")}
+              getItemLabel={(item) => `Open ${item.title}`}
+              itemClassName="movie"
+            />
+          ) : (
+            <p className="stream-empty">Loading carousel titles...</p>
+          )}
+        </div>
       </section>
 
       <section className="stream-section stream-rail">

@@ -1,14 +1,14 @@
 .stream-card {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
   scroll-snap-align: start;
   min-height: 212px;
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), border-color 240ms ease, box-shadow 260ms ease;
+  transition: transform 400ms var(--ease-cinematic), border-color 400ms var(--ease-cinematic), box-shadow 400ms var(--ease-cinematic);
   border: 1px solid var(--border-dim);
   background: var(--gradient-card);
   transform-style: preserve-3d;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
 }
 
 .stream-card::before {
@@ -16,7 +16,7 @@
   position: absolute;
   inset: 0;
   background: var(--gradient-shine);
-  opacity: 0;
+  opacity: 0.12;
   z-index: 2;
   transition: opacity 0.3s;
   pointer-events: none;
@@ -36,13 +36,14 @@
 }
 
 .stream-card:hover {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(-6px) scale(1.02);
   border-color: var(--border-soft);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.65), 0 0 24px rgba(111, 183, 255, 0.12);
+  z-index: 10;
 }
 
 .stream-card:hover::before {
-  opacity: 1;
+  opacity: 0.25;
 }
 
 .stream-card:hover::after {
@@ -60,8 +61,8 @@
 .stream-poster {
   height: 130px;
   background:
-    linear-gradient(140deg, rgba(255, 252, 240, 0.05), rgba(255, 252, 240, 0)),
-    linear-gradient(110deg, rgba(31, 29, 22, 0.84), rgba(17, 16, 9, 0.92));
+    linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+    linear-gradient(110deg, rgba(20, 26, 34, 0.92), rgba(12, 16, 22, 0.96));
   position: relative;
   overflow: hidden;
 }
@@ -70,7 +71,7 @@
   position: absolute;
   inset: auto 0 0 0;
   height: 56%;
-  background: linear-gradient(to top, rgba(2, 2, 10, 0.92), rgba(2, 2, 10, 0));
+  background: linear-gradient(to top, rgba(3, 4, 8, 0.92), rgba(3, 4, 8, 0));
   z-index: 1;
   pointer-events: none;
 }
@@ -79,7 +80,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
   transform: translateX(-120%);
   transition: transform 700ms ease;
 }
@@ -112,8 +113,8 @@
   z-index: 4;
   border-radius: 8px;
   padding: 6px 8px;
-  background: rgba(0, 0, 0, 0.64);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.7rem;
   text-align: center;
   letter-spacing: 0.06em;
@@ -140,24 +141,24 @@
   top: 8px;
   right: 8px;
   z-index: 6;
-  border: 1px solid var(--border-mid);
+  border: 1px solid var(--border-soft);
   border-radius: 8px;
   padding: 5px 9px;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-body);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-primary);
-  background: rgba(12, 11, 9, 0.76);
+  background: rgba(12, 16, 22, 0.84);
   cursor: pointer;
   transition: background 180ms ease, border-color 180ms ease, transform 160ms ease;
 }
 
 .stream-hover-audio-btn:hover {
   transform: translateY(-1px);
-  border-color: var(--border-soft);
-  background: rgba(17, 16, 9, 0.94);
+  border-color: var(--border-mid);
+  background: rgba(16, 20, 28, 0.94);
 }
 
 .stream-hover-hint {
@@ -170,8 +171,8 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(245, 245, 245, 0.9);
-  background: rgba(0, 0, 0, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .stream-card-body {
@@ -181,24 +182,24 @@
 }
 
 .stream-card-body strong {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1rem;
-  font-weight: 300;
-  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  font-weight: 600;
+  font-style: normal;
   line-height: 1.2;
 }
 
 .stream-card-body p {
   margin: 0;
-  font-family: "DM Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-soft);
 }
 
 .stream-card-body small {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--text-secondary);
 }
 
@@ -211,40 +212,42 @@
 
 .stream-mini-btn {
   border: 1px solid var(--border-dim);
-  background: transparent;
+  background: var(--bg-surface);
   color: var(--text-secondary);
   border-radius: 999px;
-  padding: 6px 10px;
-  font-family: "Outfit", sans-serif;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: transform 160ms ease, background 180ms ease, border-color 180ms ease;
+  transition: transform 300ms var(--ease-cinematic), background 300ms var(--ease-cinematic), border-color 300ms var(--ease-cinematic), color 300ms var(--ease-cinematic), box-shadow 300ms var(--ease-cinematic);
 }
 
 .stream-mini-btn:hover {
   background: var(--bg-hover);
-  border-color: var(--border-soft);
-  color: var(--text-bright);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(111, 183, 255, 0.18);
 }
 
 .stream-mini-btn.is-active {
   color: var(--black);
-  border-color: var(--white);
-  background: var(--white);
+  border-color: var(--accent);
+  background: var(--accent);
 }
 
 .stream-mini-btn.is-danger {
   color: var(--danger);
-  border-color: rgba(143, 91, 86, 0.38);
+  border-color: rgba(211, 108, 108, 0.42);
   background: var(--danger-dim);
 }
 
 .stream-mini-btn.is-danger:hover {
-  border-color: rgba(143, 91, 86, 0.62);
-  background: rgba(143, 91, 86, 0.18);
+  border-color: rgba(211, 108, 108, 0.62);
+  background: rgba(211, 108, 108, 0.2);
   animation: glitch-hover 380ms linear;
 }
 
@@ -259,12 +262,12 @@
   top: 8px;
   right: 8px;
   z-index: 4;
-  font-family: "DM Mono", monospace;
-  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
   padding: 4px 8px;
   border-radius: var(--radius-sm);
   border: 1px solid;
-  backdrop-filter: blur(6px);
+  backdrop-filter: none;
 }
 
 .rating-badge[data-score="high"] {
@@ -274,9 +277,9 @@
 }
 
 .rating-badge[data-score="medium"] {
-  color: var(--gold);
-  border-color: rgba(201, 168, 76, 0.35);
-  background: rgba(201, 168, 76, 0.08);
+  color: var(--accent);
+  border-color: rgba(111, 183, 255, 0.35);
+  background: rgba(111, 183, 255, 0.08);
 }
 
 .rating-badge[data-score="low"] {
@@ -291,21 +294,21 @@
   align-items: center;
   padding: 0 11px;
   border-radius: var(--radius-pill);
-  background: rgba(24, 22, 16, 0.86);
+  background: rgba(16, 20, 28, 0.9);
   border: 1px solid var(--border-dim);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-body);
   font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-secondary);
   transition: all 0.25s;
 }
 
 .genre-chip:hover {
-  background: var(--gold-ghost);
-  border-color: var(--gold);
-  color: var(--gold);
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .stream-type-chip {
@@ -332,23 +335,23 @@
 }
 
 .card-title {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.12rem;
-  font-weight: 300;
-  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
   letter-spacing: -0.01em;
   transition: color var(--dur-mid) var(--ease-silk);
 }
 
 .stream-card:hover .card-title {
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .card-meta {
-  font-family: "DM Mono", monospace;
-  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
   color: var(--text-secondary);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.14em;
 }
 
 .card-action-row {
@@ -379,13 +382,13 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(255, 252, 240, 0.02), transparent 35%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), transparent 35%);
   pointer-events: none;
 }
 
 .top-ten-rank {
-  font-family: "DM Mono", monospace;
-  font-size: clamp(3.5rem, 8vw, 5rem);
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 7vw, 4.2rem);
   color: var(--text-ghost);
   line-height: 0.9;
 }
@@ -404,18 +407,18 @@
 }
 
 .top-ten-content strong {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  font-weight: 300;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 600;
   color: var(--text-bright);
 }
 
 .top-ten-content p {
   margin: 0;
-  font-family: "DM Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-secondary);
 }
@@ -427,8 +430,8 @@
 }
 
 .top-ten-score span {
-  font-family: "DM Mono", monospace;
-  font-size: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
   color: var(--text-bright);
 }
 
@@ -446,7 +449,7 @@
   inset: 0;
   background-position: center;
   background-size: cover;
-  filter: blur(80px) brightness(0.15);
+  filter: blur(80px) brightness(0.2);
   transform: scale(1.08);
   opacity: 0.9;
 }
@@ -461,7 +464,7 @@
   border-radius: 16px;
   overflow: hidden;
   min-height: 420px;
-  box-shadow: 40px 60px 120px rgba(0, 0, 0, 0.55);
+  box-shadow: 30px 50px 100px rgba(0, 0, 0, 0.55);
 }
 
 .spotlight-content {
@@ -519,13 +522,13 @@
 
 .tone-warm .stream-poster {
   background:
-    linear-gradient(140deg, rgba(201, 168, 76, 0.16), rgba(201, 168, 76, 0)),
-    linear-gradient(110deg, rgba(31, 29, 22, 0.92), rgba(17, 16, 9, 0.96));
+    linear-gradient(140deg, rgba(111, 183, 255, 0.14), rgba(111, 183, 255, 0)),
+    linear-gradient(110deg, rgba(20, 26, 34, 0.92), rgba(12, 16, 22, 0.96));
 }
 
 .tone-cool .stream-poster {
   background:
-    linear-gradient(140deg, rgba(253, 250, 242, 0.08), rgba(253, 250, 242, 0)),
-    linear-gradient(110deg, rgba(31, 29, 22, 0.92), rgba(17, 16, 9, 0.96));
+    linear-gradient(140deg, rgba(246, 247, 251, 0.08), rgba(246, 247, 251, 0)),
+    linear-gradient(110deg, rgba(20, 26, 34, 0.92), rgba(12, 16, 22, 0.96));
 }
 
