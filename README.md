@@ -1,6 +1,6 @@
 # Streamzz
 
-Streamzz is a full-stack cinematic movie platform built with React, Redux Toolkit, Node.js, Express, MongoDB, TMDB, Three.js, and GSAP. It combines public movie discovery with a custom backend for authentication, favorites, watch history, and admin controls.
+Streamzz is a full-stack cinematic movie platform built with React, Redux Toolkit, Node.js, Express, MongoDB, TMDB, OGL, GSAP, and Framer Motion. It combines public movie discovery with a custom backend for authentication, favorites, watch history, and admin controls.
 
 ## Live Projects
 
@@ -10,7 +10,8 @@ Streamzz is a full-stack cinematic movie platform built with React, Redux Toolki
 
 ## What It Does
 
-- Cinematic intro screen on `/` using `Three.js` and `GSAP`
+- Cinematic intro screen on `/` using LightRays (OGL), `GSAP`, and `Framer Motion`
+- Dark and light themes with a rope-toggle theme switch
 - JWT-based signup, login, logout, and current-user session restore
 - TMDB-powered movie browsing with polished UI and trailer previews
 - Favorites saved in MongoDB
@@ -29,6 +30,7 @@ Streamzz is a full-stack cinematic movie platform built with React, Redux Toolki
 - Save and remove favorites
 - Track recent watch history
 - Responsive cinematic UI for desktop and mobile
+- Dynamic movie carousel with clickable cards and per-reload shuffling
 
 ### Admin Side
 
@@ -49,7 +51,10 @@ Streamzz is a full-stack cinematic movie platform built with React, Redux Toolki
 - Axios
 - SCSS
 - GSAP
-- Three.js
+- Framer Motion
+- Motion One
+- OGL
+- Three.js (auth tunnel background)
 - Lenis
 - Vite
 
@@ -233,6 +238,7 @@ Admin role is restricted in backend logic.
 - Reloading from protected pages takes the app back to the intro screen first
 - Movie detail and trailer views open as centered overlays, so the user does not need to scroll down to view content
 - Search, browsing, history, and admin surfaces share the same cinematic design language
+- Theme switcher retains preference across reloads
 
 ## Scripts
 
