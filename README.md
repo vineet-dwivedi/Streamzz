@@ -1,65 +1,37 @@
 # Streamzz
 
-Streamzz is a full-stack cinematic movie platform built with React, Redux Toolkit, Node.js, Express, MongoDB, TMDB, OGL, GSAP, and Framer Motion. It combines public movie discovery with a custom backend for authentication, favorites, watch history, and admin controls.
+Streamzz is a full-stack cinematic movie platform that combines TMDB discovery with a custom backend for authentication, favorites, watch history, and admin controls.
 
-## Live Projects
+## Live
 
 - Frontend: `https://streamzz-nine.vercel.app/`
 - Backend: `https://streamzz.onrender.com`
-- Health Check: `https://streamzz.onrender.com/api/health`
+- Health: `https://streamzz.onrender.com/api/health`
 
-## What It Does
+## Highlights
 
-- Cinematic intro screen on `/` using LightRays (OGL), `GSAP`, and `Framer Motion`
-- Dark and light themes with a rope-toggle theme switch
-- JWT-based signup, login, logout, and current-user session restore
-- TMDB-powered movie browsing with polished UI and trailer previews
-- Favorites saved in MongoDB
-- Recent watch history saved in MongoDB
-- Admin studio panel for movie CRUD and user moderation
-- Root-first experience: on page reload, the app routes back through the intro screen
-- Premium SCSS architecture split into app, base, shared, motion, and responsive layers
-
-## Core Features
-
-### User Side
-
-- Browse movie and TV content from TMDB
-- Open a movie detail modal without leaving the current screen
-- Watch trailers in-place
-- Save and remove favorites
-- Track recent watch history
-- Responsive cinematic UI for desktop and mobile
-- Dynamic movie carousel with clickable cards and per-reload shuffling
-
-### Admin Side
-
-- Add movies to the internal catalog
-- Edit movie details
-- Delete movies
-- View users
-- Ban and unban users
-- Delete users
+- Cinematic intro on `/` with `Three.js` + `GSAP`
+- JWT auth: signup, login, logout, session restore (`/auth/me`)
+- TMDB-powered browsing, search, and trailers
+- Favorites and watch history stored in MongoDB
+- Admin studio for movie CRUD and user moderation
+- Reload flow returns to intro first, then routes forward
+- Detail and trailer views open in a centered overlay (no scroll jump)
 
 ## Tech Stack
 
-### Frontend
-
+Frontend:
 - React 19
 - Redux Toolkit
 - React Router
 - Axios
 - SCSS
 - GSAP
-- Framer Motion
-- Motion One
-- OGL
-- Three.js (auth tunnel background)
+- Three.js
 - Lenis
 - Vite
 
-### Backend
-
+Backend:
 - Node.js
 - Express
 - MongoDB + Mongoose
@@ -67,11 +39,10 @@ Streamzz is a full-stack cinematic movie platform built with React, Redux Toolki
 - bcryptjs
 - CORS
 
-### Deployment
-
+Deployment:
 - Frontend: Vercel
 - Backend: Render
-- Database: MongoDB Atlas
+- DB: MongoDB Atlas
 
 ## Project Structure
 
@@ -99,7 +70,7 @@ STREAMZZ/
 
 ## Frontend Routes
 
-- `/` - Cinematic intro
+- `/` - Intro
 - `/auth` - Login and registration
 - `/favorites` - Main browse experience
 - `/history` - Watch history
@@ -113,31 +84,26 @@ Base URL:
 https://streamzz.onrender.com/api
 ```
 
-### Health
-
+Health:
 - `GET /health`
 
-### Auth
-
+Auth:
 - `POST /auth/signup`
 - `POST /auth/login`
 - `POST /auth/logout`
 - `GET /auth/me`
 
-### Favorites
-
+Favorites:
 - `GET /favorites`
 - `POST /favorites`
 - `DELETE /favorites/:contentKey`
 
-### History
-
+History:
 - `GET /history`
 - `POST /history`
 - `DELETE /history/:contentKey`
 
-### Admin
-
+Admin:
 - `GET /admin/movies`
 - `POST /admin/movies`
 - `PATCH /admin/movies/:id`
@@ -148,14 +114,14 @@ https://streamzz.onrender.com/api
 
 ## Local Setup
 
-### 1. Clone the Repository
+1. Clone:
 
 ```bash
 git clone https://github.com/vineet-dwivedi/Streamzz.git
 cd STREAMZZ
 ```
 
-### 2. Setup Backend
+2. Backend:
 
 ```bash
 cd backend
@@ -164,13 +130,13 @@ cp .env.example .env
 npm run dev
 ```
 
-Backend runs on:
+Backend runs at:
 
 ```text
 http://localhost:5000
 ```
 
-### 3. Setup Frontend
+3. Frontend:
 
 ```bash
 cd frontend
@@ -179,7 +145,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Frontend runs on:
+Frontend runs at:
 
 ```text
 http://localhost:5173
@@ -187,7 +153,7 @@ http://localhost:5173
 
 ## Environment Variables
 
-### Frontend `.env`
+Frontend `.env`:
 
 ```env
 VITE_API_BASE_URL=http://localhost:5000/api
@@ -197,7 +163,7 @@ VITE_TMDB_BACKDROP_BASE_URL=https://image.tmdb.org/t/p/original
 VITE_TMDB_ACCESS_TOKEN=your_tmdb_v4_read_access_token
 ```
 
-### Backend `.env`
+Backend `.env`:
 
 ```env
 PORT=5000
@@ -210,39 +176,27 @@ CLIENT_URLS=http://localhost:5173
 
 ## Deployment Notes
 
-### Frontend
-
-- Hosted on Vercel
+Frontend:
+- Vercel
 - Uses `frontend/vercel.json` for SPA routing
 
-### Backend
-
-- Hosted on Render
-- Uses `PORT` from Render automatically
+Backend:
+- Render
 - Health check path: `/api/health`
 
-### Important
-
-- Render free tier can cold start. The first backend request may take a few seconds.
-- CORS is configured for localhost, configured client URLs, and Vercel preview domains.
+Notes:
+- Render free tier can cold start. First request may be slow.
+- CORS allows localhost, configured client URLs, and Vercel preview domains.
 
 ## Admin Access
 
-Admin role is restricted in backend logic.
-
-- Only `vineetdwi17@gmail.com` is treated as `admin`
-- All newly registered users are created as normal users unless they match that email
-
-## Notable UX Decisions
-
-- Reloading from protected pages takes the app back to the intro screen first
-- Movie detail and trailer views open as centered overlays, so the user does not need to scroll down to view content
-- Search, browsing, history, and admin surfaces share the same cinematic design language
-- Theme switcher retains preference across reloads
+Admin role is restricted in backend logic:
+- Only `vineetdwi17@gmail.com` is treated as `admin`.
+- All other new users are normal users by default.
 
 ## Scripts
 
-### Frontend
+Frontend:
 
 ```bash
 npm run dev
@@ -250,7 +204,7 @@ npm run build
 npm run preview
 ```
 
-### Backend
+Backend:
 
 ```bash
 npm run dev
